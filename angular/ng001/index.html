@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="./css/index.css" type="text/css" media="screen" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+	<title>poteland | angularJS 入力フォーム</title>
+</head>
+<body>
+<header ng-include src="'../header.html'"></header>
+
+
+<div class="contents-wrapper">
+	<h1>AngularJS 入力フォーム</h1>
+	<form method="post" name="userInfo">
+		<dl>
+			<dt>名前</dt>
+			<dd>
+				<input type="text" name="userName" ng-model="userName" ng-minlength="6" ng-maxlength="12" required>
+				<span class="error" ng-show="userInfo.userName.$error.required">必須</span>
+				<span class="error" ng-show="userInfo.userName.$error.minlength">6文字以上です</span>
+				<span class="error" ng-show="userInfo.userName.$error.maxlength">12文字までです</span>
+				<span class="valid" ng-show="userInfo.userName.$valid">OK</span>
+			</dd>
+			<dt>パスワード</dt>
+			<dd>
+				<input type="password" name="password" ng-show="!showPassword" ng-model="password" required>
+				<input type="text" name="plainPassword" ng-show="showPassword" ng-model="password" required>
+				<span class="error" ng-show="userInfo.password.$error.required">必須</span>
+				<span class="valid" ng-show="userInfo.password.$valid">OK</span>
+				<div><input type="checkbox" id="showPassword" ng-model="showPassword"><label for="showPassword" class="comment">パスワードを表示する</label></div>
+			</dd>
+			<dt>メールアドレス</dt>
+			<dd>
+				<input type="mail" name="mail" ng-model="mail" ng-pattern="/^.+@gmail\.com$/">
+				<span class="comment">任意</span>
+				<span class="error" ng-show="userInfo.mail.$error.pattern">gmailのみですー</span>
+				<span class="valid" ng-show="userInfo.mail.$valid">OK</span>
+			</dd>
+			<dt>tweet 
+				<span ng-show="userInfo.twitter.$error.maxlength"><ng-show="userInfo.twitter.$error.maxlength" class="error">140文字こえてますよー</span>
+				<span ng-hide="userInfo.twitter.$error.maxlength">{{140 - twitter.length}}</span>
+			</dt>
+			<dd>
+				<textarea name="twitter" rows="10" ng-model="twitter" ng-maxlength="140"></textarea>
+				<span class="comment">任意</span>
+				<span class="valid" ng-show="userInfo.twitter.$valid">OK</span>
+			</dd>
+		</dl>
+		<div>
+			<input type="submit" value="登録" ng-disabled="userInfo.$invalid">
+			<span ng-show="userInfo.$invalid" class="comment">まだ未入力の項目や正しく入力できていない項目があります</span>
+			<span ng-show="userInfo.$valid" class="comment">入力チェックOK!</span>
+		</div>
+	</form>
+</div>
+
+
+<footer ng-include src="'../footer.html'"></footer>
+</body>
+</html>
