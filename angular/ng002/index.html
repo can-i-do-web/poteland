@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="./css/index.css" type="text/css" media="screen" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+	<title>poteland | angularJS basic filter</title>
+</head>
+<body>
+<header ng-include src="'../header.html'"></header>
+
+
+<div class="contents-wrapper">
+	<h1>AngularJS filter</h1>
+	<form method="post" name="sampleForm">
+		<dl>
+			<dt>
+				<p class="label"><label>lowercase filter / uppercase filter</label></p>
+				<input type="text" value="hoge" ng-model="plainText" placeholder="enter alphabet(lower / upper)">
+				<p>plainText : {{ plainText }}</p>
+				<p>lowercase : {{ plainText | lowercase }}</p>
+				<p>uppercase : {{ plainText | uppercase }}</p>
+			</dt>
+			<dt>
+				<p class="label"><label>json filter</label></p>
+				<span ng-init="
+					jsonFilter = {
+						name: 'user',
+						age: 20,
+						photo: null,
+						data: {
+							flg: true,
+							other: []
+						}
+					}
+				"></span>
+				<pre>{{ jsonFilter | json }}</pre>
+			</dt>
+			<dt>
+				<p class="label"><label>number filter</label></p>
+				<input type="number" ng-model="amount" ng-init="amount=1000">
+				<p>default($) : {{amount | currency }}</p>
+				<p>custom (¥) : {{amount | currency:"¥" }}</p>
+			</dt>
+			<dt>
+				<p class="label"><label>date filter</label></p>
+				<input type="date" ng-model="dateFilter">
+				<p><span ng-non-bindable>{{ dateFilter | date:'medium'}}</span> => {{ dateFilter | date:'medium'}}</p>
+				<p><span ng-non-bindable>{{ dateFilter | date:'yyyy-MM-dd HH:mm:ss Z'}}</span> => {{ dateFilter | date:'yyyy-MM-dd HH:mm:ss Z'}}</p>
+				<p><span ng-non-bindable>{{ dateFilter | date:'yyyy年MM月dd日'}}</span> => {{ dateFilter | date:'yyyy年MM月dd日'}}</p>
+			</dt>
+			<dt>
+				<p class="label"><label>limit filter</label></p>
+				<p ng-init="arrays=['zero','one', 'two', 'three', 'four', 'five']">target array => {{arrays}}</p>
+				<input type="integer" ng-model="limit" placeholder="enter number">
+				<p>output: {{ arrays | limitTo:limit }}</p>
+			</dt>
+			
+			<dt>
+				<p class="label"><label>number filter</label></p>
+				<p> <input type="text" ng-model='val' placeholder="enter number"></p>
+				<p>Default formatting: {{val | number}}</p>
+				<p>No fractions: {{val | number:0}}</p>
+				<p>Negative number: {{-val | number:4}}</p>
+			</dt>
+
+			<dt>
+				<p class="label"><label>orderBy filter</label></p>
+				<pre ng-init="
+					sampleData=[
+						{ name: 'ccc', id: '5' },
+						{ name: 'bbb', id: '2' },
+						{ name: 'aaa', id: '4' },
+						{ name: 'abc', id: '1' },
+						{ name: 'bcd', id: '3' }
+					]
+				">{{sampleData}}</pre>
+				<p><button ng-click="order='name'">order by name</button><button ng-click="order='id'">order by id</button></p>
+				<ul ng-repeat="data in sampleData | orderBy: order">
+					<li>name : {{data.name}}, id: {{data.id}}</li>
+				</ul>
+
+			</dt>
+
+			<dt>
+				<span ng-init="
+					sampleData2=[
+						{ name: 'aaaAAAaaaa' },
+						{ name: 'aabbCCddee' },
+						{ name: 'aaaBBbcccd' },
+						{ name: 'ccDDeeffgg' },
+						{ name: 'deeefffgGG' }
+					]
+				"></span>
+				<p class="label"><label>リストの絞り込み</label></p>
+				<p><input type="text" ng-model="search"></p>
+				<ul ng-repeat="data in sampleData2 | filter:search">
+					<li>{{data.name}}</li>
+				</ul>
+			</dt>
+		</dl>
+	</form>
+</div>
+
+</body>
+</html>
+
