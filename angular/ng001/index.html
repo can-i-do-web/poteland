@@ -51,13 +51,12 @@
 		</dl>
 		<div>
 			<input type="submit" value="登録" ng-disabled="userInfo.$invalid">
-			<span ng-show="userInfo.$invalid" class="comment">まだ未入力の項目や正しく入力できていない項目があります</span>
+			<span ng-show="userInfo.$invalid" class="comment">未入力の項目や正しく入力できていない項目があります</span>
 			<span ng-show="userInfo.$valid" class="comment">入力チェックOK!</span>
 		</div>
 	</form>
 </div>
 
 
-<footer ng-include src="'../footer.html'"></footer>
 </body>
 </html>
