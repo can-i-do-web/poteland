@@ -16,21 +16,26 @@
 <div class="contents-wrapper">
 	<h1>AngularJS i18n</h1>
 	<form method="post" name="sampleForm" ng-controller="InitData">
-		<p class="label"><label>date filter format</label></p>
-		<input type="date" ng-model="today" />
-		<p>'medium' : {{today | date:['medium'] }}</p>
-		<p>'short' : {{today | date:['short'] }}</p>
-		<p>'fullDate' : {{today | date:['fullDate'] }}</p>
-		<p>'longDate' : {{today | date:['longDate'] }}</p>
-		<p>'mediumDate' : {{today | date:['mediumDate'] }}</p>
-		<p>'shortDate' : {{today | date:['shortDate'] }}</p>
-		<p>'mediumTime' : {{today | date:['mediumTime'] }}</p>
-		<p>'shortTime' : {{today | date:['shortTime'] }}</p>
-		<p>'custom' : {{today | date:['yyyy年M月d日 (EEE)'] }}</p>
-		
-		<p class="label"><label>currency filter format</label></p>
-		<input type="integer" ng-model="amount" ng-init="amount=1000" />
-		<p>{{ amount | currency}}</p>
+		<dl>
+			<dt>
+				<p class="label"><label>date filter format</label></p>
+				<input type="date" ng-model="today" />
+				<p>'medium' : {{today | date:['medium'] }}</p>
+				<p>'short' : {{today | date:['short'] }}</p>
+				<p>'fullDate' : {{today | date:['fullDate'] }}</p>
+				<p>'longDate' : {{today | date:['longDate'] }}</p>
+				<p>'mediumDate' : {{today | date:['mediumDate'] }}</p>
+				<p>'shortDate' : {{today | date:['shortDate'] }}</p>
+				<p>'mediumTime' : {{today | date:['mediumTime'] }}</p>
+				<p>'shortTime' : {{today | date:['shortTime'] }}</p>
+				<p>'custom' : {{today | date:['yyyy年M月d日 (EEE)'] }}</p>
+			</dt>
+			<dt>
+				<p class="label"><label>currency filter format</label></p>
+				<input type="integer" ng-model="amount" ng-init="amount=1000" />
+				<p>{{ amount | currency}}</p>
+			</dt>
+		</dl>
 	</form>
 </div>
 
